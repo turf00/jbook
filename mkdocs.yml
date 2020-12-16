@@ -11,6 +11,7 @@ nav:
       - Wish list: wish_list.md
   - Coding:
       - Coding: coding/coding.md
+      - Git: coding/git.md
   - Emojis: emojis.md
   - Contact: contact.md
 
