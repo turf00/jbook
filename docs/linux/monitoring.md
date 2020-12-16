@@ -47,3 +47,48 @@ Where is my memory: <https://www.dedoimedo.com/computers/slabinfo.html>
 Redhat6 memory info: <https://access.redhat.com/solutions/406773>
 
 Slabs: <https://medium.com/@dhelios/memory-caches-and-slab-objects-c1de113ce235>
+
+# pidstat
+
+Show stats for a particular process including voluntary and non-volunatary context switches
+
+```bash
+pidstat -w -p <pid> <interval secs>
+```
+
+e.g. `pidstat -w -p 1345 1`
+
+# strace
+
+Capture system calls for app
+
+```bash
+strace -c -f -p <pid>
+```
+
+-c = capture count
+-f = trace child processes
+
+To exit after a specific time period
+
+```bash
+timeout <secs> strace -c -f -p <pid>
+```
+
+# count threads
+
+Count the number of threads for a process
+
+```bash
+cat /proc/<pid>/status
+```
+
+There is the list is threads or
+
+```bash
+cat /proc/<pid>/status | grep -i threads
+```
+
+# disk io latency
+
+`iostat -dxt 1 sdb`
