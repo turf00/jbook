@@ -2,7 +2,9 @@
 
 ## Memory
 
-`free -m`
+```bash
+free -m
+```
 
 List of availble memory and used memory before/after buffers and caches are taken into consideration.
 
@@ -10,23 +12,31 @@ Does not include the memory used for the kernel caches, i.e. Slab.  This memory 
 
 Show resident set size (RSS) and virtual  memory size (VMZ) for processes, also lists the command.
 
-`ps -eo pid,rss,vsz,cmd`
+```bash
+ps -eo pid,rss,vsz,cmd
+```
 
 If you take the sum of RSS + Slab -Shared then it is roughly equivalent to used memory from free (-buffers, caches).
 
 List the current memory usage with breakdowns:
 
-`cat /proc/meminfo`
+```bash
+cat /proc/meminfo
+```
 
 List the slab usage
 
-`cat /proc/slabinfo`
+```bash
+cat /proc/slabinfo
+```
 
 For the above the size (Bytes) can be calculated by multiplying `<num_objs> * <objsize>`.
 
 Also slabtop provides info on the used memory for slab.
 
-`slabtop`
+```bash
+slabtop
+```
 
 ### References
 

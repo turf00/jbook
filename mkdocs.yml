@@ -7,12 +7,14 @@ nav:
   - Introduction: index.md
   - Coding:
       - Coding: coding/coding.md
+      - Git: coding/git.md
       - JVM:
         - Java Flight Recorder: coding/jvm/jfr.md
         - JVM: coding/jvm/jvm.md
         - JVM Flags: coding/jvm/jvm-flags.md
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
-      - Git: coding/git.md
+      - Shell:
+        - Bash Handling params: coding/shell/bash-handling-params.md
   - Linux:
       - Monitoring: linux/monitoring.md
   - Contact: contact.md
