@@ -11,6 +11,9 @@ nav:
       - Wish list: wish_list.md
   - Coding:
       - Coding: coding/coding.md
+      - JVM:
+        - JVM: coding/jvm/jvm.md
+        - JVM Flags: coding/jvm/jvm-flags.md
       - Git: coding/git.md
   - Emojis: emojis.md
   - Contact: contact.md
