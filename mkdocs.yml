@@ -13,7 +13,8 @@ nav:
         - JVM Flags: coding/jvm/jvm-flags.md
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
       - Git: coding/git.md
-  - Emojis: emojis.md
+  - Linux:
+      - Monitoring: linux/monitoring.md
   - Contact: contact.md
 
 plugins:

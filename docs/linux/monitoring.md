@@ -1,0 +1,39 @@
+# Linux Monitoring
+
+## Memory
+
+`free -m`
+
+List of availble memory and used memory before/after buffers and caches are taken into consideration.
+
+Does not include the memory used for the kernel caches, i.e. Slab.  This memory will contribute to the overall used memory but will not show against the process.
+
+Show resident set size (RSS) and virtual  memory size (VMZ) for processes, also lists the command.
+
+`ps -eo pid,rss,vsz,cmd`
+
+If you take the sum of RSS + Slab -Shared then it is roughly equivalent to used memory from free (-buffers, caches).
+
+List the current memory usage with breakdowns:
+
+`cat /proc/meminfo`
+
+List the slab usage
+
+`cat /proc/slabinfo`
+
+For the above the size (Bytes) can be calculated by multiplying `<num_objs> * <objsize>`.
+
+Also slabtop provides info on the used memory for slab.
+
+`slabtop`
+
+### References
+
+Droping kernel caches: <https://linux-mm.org/Drop_Caches>
+
+Where is my memory: <https://www.dedoimedo.com/computers/slabinfo.html>
+
+Redhat6 memory info: <https://access.redhat.com/solutions/406773>
+
+Slabs: <https://medium.com/@dhelios/memory-caches-and-slab-objects-c1de113ce235>

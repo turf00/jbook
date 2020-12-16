@@ -71,7 +71,7 @@ Copy default.jfr and edit the file in <jvm>/jre/lib/jfr/
 Edit the file (or better yet a copy of it) and change the following to enable allocation tracking.
 The profile.jfr also includes allocation capture.
 
-```
+```xml
 <flag name="allocation-profiling-enabled" label="Allocation Profiling">true</flag>
 
 <event path="java/object_alloc_in_new_TLAB">
@@ -84,3 +84,7 @@ The profile.jfr also includes allocation capture.
   <setting name="stackTrace">true</setting>
 </event>
 ```
+
+# Links
+
+<https://developers.redhat.com/blog/2020/08/25/get-started-with-jdk-flight-recorder-in-openjdk-8u/>
