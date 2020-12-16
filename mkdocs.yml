@@ -5,10 +5,6 @@ site_author: turf00
 site_url: https://turf00.github.io/jbook
 nav:
   - Introduction: index.md
-  - Meta:
-      - Meta: meta/meta.md
-      - Projects: projects/projects.md
-      - Wish list: wish_list.md
   - Coding:
       - Coding: coding/coding.md
       - JVM:
