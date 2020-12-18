@@ -232,9 +232,9 @@ PAUSED at 39:00 on the second video.
 
 * They have a large overhead apart from JMC.
 
-## JMC
+## JFR
 
-* JMC has very low overhead < 5% overhead for capturing allocation.
+* JFR has very low overhead < 5% overhead for capturing allocation.
 * Now OS and backported to 8u262
 * Gives you the stack trace to where the objects are allocated from.
 
@@ -259,15 +259,110 @@ PAUSED at 39:00 on the second video.
 * Allocation of new TLAB
 ### JFR, Async Profiler
 
-* They are both concerned only with
+* They are both concerned only with slow pass allocation, i.e. outside of TLAB
+* This is tact taken by JFR and Async Profiler
+* Intercept slow pass alloc, record stack and object allocated
+* Works in OpenJDK 7u40+
+* Do commercial features required.
 
-* Flight Recorder o
+## JDK 11
 
+* JEP-331 low overhead heap profiling
+* SampledObjectAlloc and SetHeapSamplingInterval
+* Additional boundary added to TLAB
+* Virtual boundary can be set to specific size to pick up allocations? Not entirely sure about its operation
+
+## demo7
+
+* Stand -e alloc is the number of allocations but we can also profile for the size of the allocations.
+* `-o flamegraph=total` will do this for alloc mode
+
+## Alloc profiling colours
+
+Blue = Alloc in new TLAB
+Brown = Alloc outside TLAB
+
+* Outside TLAB means usually the object is too large for a TLAB
+* 100KB-2/3MB TLAB size
+
+## G1
+
+* G1GC allows humongous allocations, objects that cover 1 or more G1 regions.
+* They usually affect perf badly
+* Async profiler can profile any native func
+* He uses it to pick up G1GC humongous allocs via: `-e G1CollectedHeap::humongous_obj_allocate`
+* Then start the app with `-XX:+UseG1GC`
+
+## Setting TLAB size
+
+* You can set TLAB size with `-XX:TLABSize=10k` 10KB TLAB size, smaller than default
+* Special hack to measure every single alloc in app: `-XX:-UseTLAB` which will turn off TLAB.
+* The above trick only works with G1GC, other GCs won't show this as they won't go through the VMruntime.
+
+## Capturing native allocs
+
+* These are disabled by default as most alloc is done in Java code and it would clutter the flamegraphs.
+* You can capture this information by using cstack option. i.e. `cstack=fp`
+* Sometimes you cannot get native traces because native library is compiled without maintaining fp calling convention
+* gcc will skip maintaining the linked list of frames, doesn't preserve fps.
+* You will then see truncated native stacks
+* Modern hw, from Intel Nehelen CPUs support HW stack walking by using Last Branch Record mechanism.
+* Processor keeps track of all jumps in the code, function or conditional branch. This allows the ability to match and return associated instructions.
+* From Linux 4.2~?, there is option to make perf events API to use this to get HW stacks.
+* Using LBR mechanism with OpenSSL we get specific good functions in the flamegraph from the library
+
+## demo 8
+
+* Async profiler has Java API
+* We can profile app using Java API rather than JVMTI or attach script.
+* This is used with async-profiler.jar
+
+## Profiling in Idea Ultimate
+
+* Similar but has nice feature that it shows the profiling by separate threads or as all grouped together.
+* Also the colours are different for the Idea
+* It has a nice tree view, etc.
+* You can also attach the IDEA profiler to app that is running.
+* You can open snapshots by external tool, in JFR or collapsed stack format into Idea.
+
+## demo10 Non-trivial native mem leaks
+
++ Simple servlet that provides an image by id
++ Gets the image from the resource stream
++ Sends as byte array
++ Requires deps
++ He uses the `malloc` even to see where the data is getting allocated.
++ Profiling malloc is not always the best for the leak as the memory may be released after being allocated.
++ Instead he uses `mprotect` profiling, malloc uses big chunks from memmap.  It calls mprotect to commit more native memory.
++ This is specifically related to the growth of the RSS Resident Set Size.
++ The resource is compressed so the inflator is created.
++ The inflator has a finalize method, therefore the problem would be fixed by the gc kicking in but there are no guarantees.
+
+### FileTest
+
+* Tracepoints in the linux kernel that can be hooked
+* Its the logger causing the issue, the log location wasnt right and wasn't rotated correctly.
+* He identified that the page cache was growing, it is OS based.
+* Therefore he looked from the tracepoints in `perf list` and found one related to page cache, which he used to debug the issue.
+
+## Problems with Flamegraphs
+
+* Flamegraph is aggregated
+* Async profiler can write events, all samples if required
+
+## Demo12
+
+* Worried about CPU spikes that happen every 5s
+* Because it happens infrequently you cannot see why these spikes happen
+* Async profiler can do jfr recording
+
+REACHED 1:21:58
 ## Tasks
 
 1. Raise issue about nanotime, even when connecting directly as agent it didn't work as expected.
 2. demo6 doesn't work as expected due to the classpath failure
-3. Second part of the presentation doesn't seem to be there
+3. Second part of the presentation doesn't seem to be there on the site.
+4. Find out about mprotect event?
 
 ## Questions
 
@@ -278,3 +373,5 @@ PAUSED at 39:00 on the second video.
 * Can you profile specific Java threads to decrease overhead
 * Do you need sudo permissions to run Profiler?
   * You don't need root to run the image
+* Can Async profiler show threads waiting in native code? (real logic question!)
+  * Profiling in wall clock mode will show this, though you need to search for wait, specifically in the output and it can be hard to see.
