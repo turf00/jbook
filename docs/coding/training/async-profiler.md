@@ -242,15 +242,26 @@ PAUSED at 39:00 on the second video.
 
 * If enough space in TLAB, use simple TLAB alloc
 * If not enough space in TLAB, 2 options:
-  * 
+  * Allocate directly in EDEN
+  * Or a new TLAB is allocated and the existing discarded
 
 ### Simple TLAB
 
+* Fast: inlined
 * Allocation is handled here first if possible
 * The allocation requires no synch
 * Alloc involves simple pointer increment
 
+### Slower
 
+* Call to VM Runtime
+* Outside TLAB
+* Allocation of new TLAB
+### JFR, Async Profiler
+
+* They are both concerned only with
+
+* Flight Recorder o
 
 ## Tasks
 

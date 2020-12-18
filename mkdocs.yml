@@ -15,6 +15,8 @@ nav:
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
       - Shell:
         - Bash Handling params: coding/shell/bash-handling-params.md
+      - Training:
+        - Async profiler: coding/training/async-profiler.md
   - Linux:
       - Monitoring: linux/monitoring.md
   - Contact: contact.md
