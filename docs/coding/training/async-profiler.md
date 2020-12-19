@@ -356,7 +356,20 @@ Brown = Alloc outside TLAB
 * Because it happens infrequently you cannot see why these spikes happen
 * Async profiler can do jfr recording
 
-REACHED 1:21:58
+## Flamescope
+
+* Events in heatmap style
+* Flamescope is not installed
+* Convert from jfr to flamescope using
+
+The converter is built in the async profiler project:
+
+`java -cp build/converter.jar jfr2nflx <input.jfr> <out.nflx>`
+
+## Things to look further
+
+* Flamescope
+
 ## Tasks
 
 1. Raise issue about nanotime, even when connecting directly as agent it didn't work as expected.
@@ -368,10 +381,11 @@ REACHED 1:21:58
 
 * Does Async profiler rely on some Linux signals?
 * Async profiler works with what JVMs?
-  * It works with: HotSpot, Azul (no IBM :<)
-  * YourKit supports Async traces via AsyncGetCallTrace
+    * It works with: HotSpot, Azul (no IBM :<)
+    * YourKit supports Async traces via AsyncGetCallTrace
 * Can you profile specific Java threads to decrease overhead
 * Do you need sudo permissions to run Profiler?
-  * You don't need root to run the image
+    * You don't need root to run the image
 * Can Async profiler show threads waiting in native code? (real logic question!)
-  * Profiling in wall clock mode will show this, though you need to search for wait, specifically in the output and it can be hard to see.
+    * Profiling in wall clock mode will show this, though you need to search for wait, specifically in the output and it can be hard to see.
+* 
