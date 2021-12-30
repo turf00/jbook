@@ -7,7 +7,9 @@ This page contains links for information on the JVM.
 # Child pages
 
 [JVM Flags](jvm-flags.md)
-[JVM Troublehsooting](jvm-troubleshooting.md)
+
+[JVM Troubleshooting](jvm-troubleshooting.md)
+
 [JVM Assembly](jvm-asm.md)
 
 # Java native memory

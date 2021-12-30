@@ -11,6 +11,7 @@ nav:
       - JVM:
         - Java Flight Recorder: coding/jvm/jfr.md
         - JVM: coding/jvm/jvm.md
+        - JVM Assembly: coding/jvm/jvm-asm.md
         - JVM Flags: coding/jvm/jvm-flags.md
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
       - Shell:
