@@ -8,6 +8,7 @@ This page contains links for information on the JVM.
 
 [JVM Flags](jvm-flags.md)
 [JVM Troublehsooting](jvm-troubleshooting.md)
+[JVM Assembly](jvm-asm.md)
 
 # Java native memory
 
