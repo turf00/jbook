@@ -93,11 +93,15 @@ jcmd <pid> GC.class_stats
 kill -3 <pid>
 ```
 
+The output for `kill -3` goes to the stdout for the app in question, therefore do not expect it to be output at the shell where you execute the command.
+
 Or using jcmd
 
 ```bash
 jcmd <pid> Thread.print
 ```
+
+jcmd will output to the shell where you execute the command and can be piped to a file.
 
 In Java 11+ the dump also includes how long the thread has been running as well as the CPU time for the thread.
 Example
