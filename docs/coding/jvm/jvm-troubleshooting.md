@@ -90,7 +90,7 @@ jcmd <pid> GC.class_stats
 # Take thread dump
 
 ```bash
-kill -3
+kill -3 <pid>
 ```
 
 Or using jcmd
