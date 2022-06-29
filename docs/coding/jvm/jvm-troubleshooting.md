@@ -101,7 +101,8 @@ Or using jcmd
 jcmd <pid> Thread.print
 ```
 
-jcmd will output to the shell where you execute the command and can be piped to a file.
++ jcmd will output to the shell where you execute the command and can be piped to a file.
++ jcmd requires the JDK be installed it is not part of the JRE.
 
 In Java 11+ the dump also includes how long the thread has been running as well as the CPU time for the thread.
 Example
