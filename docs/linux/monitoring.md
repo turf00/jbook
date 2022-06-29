@@ -92,3 +92,13 @@ cat /proc/<pid>/status | grep -i threads
 # disk io latency
 
 `iostat -dxt 1 sdb`
+
+# Check env for processes
+
+Find the process id then
+
+`strings /proc/<pid>/environ`
+
+or
+
+`cat /proc/28818/environ | tr '\0' '\n'`

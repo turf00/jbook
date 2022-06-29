@@ -366,6 +366,31 @@ The converter is built in the async profiler project:
 
 `java -cp build/converter.jar jfr2nflx <input.jfr> <out.nflx>`
 
+## demo9
+
+How to do HW performance counters
+
+* Example starts two threads, both are incrementing random elements of the array
+* Array is one million elements
+* 1st thread only touches small amount of array
+* 2nd thread touches all of the array
+* Normal CPU profiling won't show much
+* False sharing will show up using llc-load-misses
+
+## async-profiler events
+
+* Profile `VMThread::execute` for stop the world
+* Profile `Deoptimization::uncommon_trap` for
+* Profile `java_lang_Throwable::fill_in_stack_trace`
+* You can profile any java method, or even any java method in a class
+
+## demo 11
+
+* Scenario is exceptions thrown in the JVM, no sure of the source
+* We can use fully qualified method name as the classname
+
+`./profiler.sh -d 5 -f out.svg -e java.lang.NullPointerException.<init> jps`
+
 ## Things to look further
 
 * Flamescope
@@ -388,4 +413,13 @@ The converter is built in the async profiler project:
     * You don't need root to run the image
 * Can Async profiler show threads waiting in native code? (real logic question!)
     * Profiling in wall clock mode will show this, though you need to search for wait, specifically in the output and it can be hard to see.
-* 
+* Is there a tool that builds flamegraph from multiple instances?
+    * It is possible with JFR, collapsed stack traces
+    * These can then be concatenated with simple file concat
+    * Can be opened in IDEA
+    * Or use async converter to convert collapsed stack traces to flamegraph
+* Common problem, small functions which runs very fast mostly, 100 microseconds
+    * Option 1 reduce the profiling interval `-i 100us`, high overhead in production
+    * Option 2: include, exclude to filter interesting stack traces
+    * Option 3: turn on/off profiling at specific points
+    * Option 4: `--begin --end` when particular native function is reached

@@ -86,3 +86,33 @@ Must be enabled with JVM flag `-XX:+UnlockDiagnosticVMOptions`
 ```bash
 jcmd <pid> GC.class_stats
 ```
+
+# Take thread dump
+
+```bash
+kill -3
+```
+
+Or using jcmd
+
+```bash
+jcmd <pid> Thread.print
+```
+
+In Java 11+ the dump also includes how long the thread has been running as well as the CPU time for the thread.
+Example
+
+```bash
+"http-nio-8080-ClientPoller" #42 daemon prio=5 os_prio=31 cpu=7.57ms elapsed=102.11s tid=0x00007f7bfc97d800 nid=0x14103 runnable  [0x000070000da89000]                              │
+   java.lang.Thread.State: RUNNABLE                                                                                                                                                 │
+        at sun.nio.ch.KQueue.poll(java.base@11.0.11/Native Method)                                                                                                                  │
+        at sun.nio.ch.KQueueSelectorImpl.doSelect(java.base@11.0.11/KQueueSelectorImpl.java:122)                                                                                    │
+        at sun.nio.ch.SelectorImpl.lockAndDoSelect(java.base@11.0.11/SelectorImpl.java:124)                                                                                         │
+        - locked <0x00000007f8247760> (a sun.nio.ch.Util$2)                                                                                                                         │
+        - locked <0x00000007f8247608> (a sun.nio.ch.KQueueSelectorImpl)                                                                                                             │
+        at sun.nio.ch.SelectorImpl.select(java.base@11.0.11/SelectorImpl.java:136)                                                                                                  │
+        at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:709)                                                                                                  │
+        at java.lang.Thread.run(java.base@11.0.11/Thread.java:829)
+```
+
+We can see here the `cpu=<how much time spent>` and `elapsed=<time running>`
