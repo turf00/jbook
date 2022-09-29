@@ -46,7 +46,7 @@ YourKit, VisualVM.
 Start a recording with a time limit, specifying location to save to and compression.
 
 ```
-jcmd <process id> JFR.start name=Test-01 filename=/app/record-test-01.jfr settings=default-with-alloc duration=30s stackdepth=1024
+jcmd <process id> JFR.start name=Test-01 filename=/app/record-test-01.jfr settings=/somelocation/default-with-alloc duration=30s stackdepth=1024
 ```
 
 ## Flight Recorder - Start recording with no duration defined
@@ -82,6 +82,23 @@ The profile.jfr also includes allocation capture.
 <event path="java/object_alloc_outside_TLAB">
   <setting name="enabled" control="allocation-profiling-enabled">true</setting>
   <setting name="stackTrace">true</setting>
+</event>
+```
+
+# Enable Physical Memory capture more frequently
+
+As default it seems to be every chunk, if you want it more frequently override the default.
+
+```xml
+<!-- Default -->
+<event name="jdk.PhysicalMemory">
+  <setting name="enabled">true</setting>
+  <setting name="period">everyChunk</setting>
+</event>
+<!-- every 15s -->
+<event name="jdk.PhysicalMemory">
+  <setting name="enabled">true</setting>
+  <setting name="period">15s</setting>
 </event>
 ```
 
