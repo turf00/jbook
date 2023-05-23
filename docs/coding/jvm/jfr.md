@@ -102,6 +102,25 @@ As default it seems to be every chunk, if you want it more frequently override t
 </event>
 ```
 
+## Java Mission Control
+
+Mission Control provides one avenue for reviewing the data captured by JFR.
+
+### Timezones
+
+In order to coordinate with different timezones and to make the calculations easier, you can set the timezone on startup.
+
+<https://hirt.se/blog/?p=185>
+
+On OSX you need to drill down into the .App file to get to the executable.
+
+```sh
+# Start with PT timezone
+./jmc -vmargs -Duser.timezone=PST8PDT
+```
+
 # Links
 
 <https://developers.redhat.com/blog/2020/08/25/get-started-with-jdk-flight-recorder-in-openjdk-8u/>
+<https://bell-sw.com/announcements/2020/07/22/Hunting-down-code-hotspots-with-JDK-Flight-Recorder/>
+<https://devblogs.microsoft.com/devops/how-cpu-sampling-works/>
