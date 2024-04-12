@@ -14,7 +14,7 @@ htmlmin==0.1.12           # via mkdocs-minify-plugin
 importlib-metadata==2.0.0  # via markdown
 jinja2==2.11.2            # via mkdocs
 joblib==0.17.0            # via nltk
-jsmin==2.2.2              # via mkdocs-minify-plugin
+jsmin==3.0.0              # via mkdocs-minify-plugin
 livereload==2.6.3         # via mkdocs
 lunr[languages]==0.5.8    # via mkdocs
 markdown==3.3             # via mkdocs, mkdocs-material, pymdown-extensions
