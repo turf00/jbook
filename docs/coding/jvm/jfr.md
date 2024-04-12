@@ -124,3 +124,4 @@ On OSX you need to drill down into the .App file to get to the executable.
 <https://developers.redhat.com/blog/2020/08/25/get-started-with-jdk-flight-recorder-in-openjdk-8u/>
 <https://bell-sw.com/announcements/2020/07/22/Hunting-down-code-hotspots-with-JDK-Flight-Recorder/>
 <https://devblogs.microsoft.com/devops/how-cpu-sampling-works/>
+<https://sap.github.io/SapMachine/jfrevents/#executionsample>
