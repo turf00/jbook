@@ -22,6 +22,8 @@ This page contains links for information on the JVM.
 
 [JIT](jit.md)
 
+[Async Profiler](async.md)
+
 # Java native memory
 
 Stats were added in Java 8 when the permgen data was moved off heap.
