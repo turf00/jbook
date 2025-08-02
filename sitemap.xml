@@ -111,6 +111,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://turf00.github.io/jbook/coding/k8/k8-and-jvm/</loc>
+         <lastmod>2025-08-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://turf00.github.io/jbook/coding/shell/bash-handling-params/</loc>
          <lastmod>2025-08-02</lastmod>
          <changefreq>daily</changefreq>
