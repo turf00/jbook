@@ -59,7 +59,7 @@ markdown_extensions:
 theme:
   name: material
   custom_dir: theme
-  logo: img/logo.bmp
+  logo: img/logo.jpg
   features:
     - navigation.instant
   palette:
