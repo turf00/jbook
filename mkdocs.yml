@@ -9,11 +9,17 @@ nav:
       - Coding: coding/coding.md
       - Git: coding/git.md
       - JVM:
+        - Classloading: coding/jvm/classloading.md
         - Java Flight Recorder: coding/jvm/jfr.md
         - JVM: coding/jvm/jvm.md
         - JVM Assembly: coding/jvm/jvm-asm.md
         - JVM Flags: coding/jvm/jvm-flags.md
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
+        - Metaspace: coding/jvm/metaspace.md
+        - Object Layout: coding/jvm/object-layout.md
+        - Heap dump example: coding/jvm/heap-dump-tool-analysis.md
+        - Leak Analysis: coding/jvm/leak-analysis.md
+        - Async profiler: coding/jvm/async.md
       - Shell:
         - Bash Handling params: coding/shell/bash-handling-params.md
       - Training:
