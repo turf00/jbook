@@ -15,7 +15,22 @@ This will list all the JVM processes it can find with their pids.
 
 This will for the particular JVM output the commands available.
 
+# Get help for a particular command
+
+`jcmd <pid> help <cmd>`
+
 # Capturing a heap dump from JVM
+
+Using jcmd
+
+```bash
+jcmd <pid> GC.heap_dump filename=<file>
+
+# To capture live objects
+jcmd <pid> GC.heap_dump filename=<file> -all
+```
+
+# Using jmap to capture a heap dump
 
 Take a dump of all objects, not just live objects in the binary format.  This does not force a full GC and may include dead objects.
 
@@ -30,12 +45,6 @@ jmap -dump:live,format=b,file=<filename.hprof> <pid>
 ```
 
 <https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jmap.html>
-
-Using jcmd (note does not seem to support live objects only)
-
-```bash
-jcmd <pid> GC.heap_dump filename=<file>
-```
 
 # Heap Histogram
 
@@ -121,3 +130,26 @@ Example
 ```
 
 We can see here the `cpu=<how much time spent>` and `elapsed=<time running>`
+
+# How to work with a JRE only
+
+- Without the JDK there are a lot of missing tools, such as jcmd etc. Its still possible to handle these using jattach, from the author of async-profiler
+- <https://github.com/jattach/jattach>
+- Download: <https://github.com/jattach/jattach/releases>
+
+```
+Supported commands:
+
+load : load agent library
+properties : print system properties
+agentProperties : print agent properties
+datadump : show heap and thread summary
+threaddump : dump all stack traces (like jstack)
+dumpheap : dump heap (like jmap)
+inspectheap : heap histogram (like jmap -histo)
+setflag : modify manageable VM flag
+printflag : print VM flag
+jcmd : execute jcmd command
+```
+
+jattach
