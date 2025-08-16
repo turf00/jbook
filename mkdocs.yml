@@ -17,8 +17,8 @@ nav:
         - JVM Troubleshooting: coding/jvm/jvm-troubleshooting.md
         - Metaspace: coding/jvm/metaspace.md
         - Object Layout: coding/jvm/object-layout.md
-        - Heap dump example: coding/jvm/heap-dump-tool-analysis.md
-        - Leak Analysis: coding/jvm/leak-analysis.md
+        - Heap dump example: coding/jvm/heap-dump-analysis/heap-dump-tool-analysis.md
+        - Leak Analysis: coding/jvm/heap-dump-analysis/leak-analysis.md
         - Async profiler: coding/jvm/async.md
       - Shell:
         - Bash Handling params: coding/shell/bash-handling-params.md
