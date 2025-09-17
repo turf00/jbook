@@ -4,7 +4,7 @@ There is a hierarchy of classloaders
 
 ## Built in classloaders
 
-- Bootstrap class loader – built-in class loader, is represented as null.
+- Bootstrap class loader – built-in class loader, is represented as null. Written in native code to load the other classloaders.
 - Platform class loader – Loads the platform classes, which include the Java SE platform APIs, their implementation classes, and JDK-specific run-time classes. The platform class loader is the parent of the system class loader
 - System class loader – Also known as application class loader, loads classes on the application class path, module path, and JDK-specific tools
 
