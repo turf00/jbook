@@ -8,6 +8,14 @@ made up of, for 64bit (compressed oops on and off) and 32 bit JVM.
 Excellent guide to memory layout:
 <http://psy-lob-saw.blogspot.com/2013/05/know-thy-java-object-memory-layout.html>
 
+## Rules
+
+(Taken from psy-lob-saw>)
+
+- Objects are aligned on 8 byte boundary
+- Fields are also type aligned, long = 8 byte, int = 4 byte, short/char = 2 byte
+- Fields are packed in the order of their size, except for references which are last
+
 The tool jol is a library that can be used to identify the expected size of an object.
 
 Here we see the output for testing with jol on a 64bit compressed oops JVM.
@@ -47,6 +55,8 @@ will lose a total of 4 bytes due to the alignment of the object on 8 byte bounda
 See the link above for 32bit, not used that often at this point.
 
 ## 64bit compressed OOP
+
+Mark word is always as wide as the full reference without compressed OOP. But the Klass word can be OOP.
 
 ```sh
 |--------------------------------------------------------------------------------------------------------------|--------------------|

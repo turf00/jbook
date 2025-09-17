@@ -119,6 +119,17 @@ On OSX you need to drill down into the .App file to get to the executable.
 ./jmc -vmargs -Duser.timezone=PST8PDT
 ```
 
+## Scrubbing sensitive data
+
+<https://inside.java/2022/10/03/sip068/>
+
+- Has good information on the topic.
+- You can use the following to filter events, most sensitive stuff is in env vars or system properties
+
+```sh
+jfr scrub --exclude-events jdk.InitialSystemProperty,jdk.InitialEnvironmentVariable,jdk.SystemProcess,jdk.JVMInformation  input.jfr filtered.jfr
+```
+
 # Links
 
 <https://developers.redhat.com/blog/2020/08/25/get-started-with-jdk-flight-recorder-in-openjdk-8u/>

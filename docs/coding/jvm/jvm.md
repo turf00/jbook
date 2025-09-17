@@ -10,19 +10,25 @@ This page contains links for information on the JVM.
 
 # Child pages
 
+[Async Profiler](async.md)
+
+[GC](gc.md)
+
+[Heap Dump Analysis Tools](heap-dump-analysis/heap-dump-tool-analysis.md)
+
+[Java Libs](libs.md)
+
+[JIT](jit.md)
+
+[JVM Assembly](jvm-asm.md)
+
 [JVM Flags](jvm-flags.md)
 
 [JVM Troubleshooting](jvm-troubleshooting.md)
 
-[JVM Assembly](jvm-asm.md)
-
-[Heap Dump Analysis Tools](heap-dump-analysis/heap-dump-tool-analysis.md)
-
 [Object Layout](object-layout.md)
 
-[JIT](jit.md)
 
-[Async Profiler](async.md)
 
 # Java native memory
 
