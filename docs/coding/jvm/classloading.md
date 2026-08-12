@@ -4,9 +4,11 @@ There is a hierarchy of classloaders
 
 ## Built in classloaders
 
+BPS
+
 - Bootstrap class loader – built-in class loader, is represented as null. Written in native code to load the other classloaders.
 - Platform class loader – Loads the platform classes, which include the Java SE platform APIs, their implementation classes, and JDK-specific run-time classes. The platform class loader is the parent of the system class loader
-- System class loader – Also known as application class loader, loads classes on the application class path, module path, and JDK-specific tools
+- System class loader – Also known as _Application_ class loader, loads classes on the application class path, module path, and JDK-specific tools. It loads files found in the classpath environment variable, -classpath, or -cp command line option. It’s also a child of the platform class loader.
 
 ## Loading a class
 
@@ -17,6 +19,7 @@ There is a hierarchy of classloaders
 
 - import statements are not relevant in any way for classloading
 - When a new class is instantiated, or a static method or field is touched, then the class will be loaded.
+- Interfaces may be lazily loaded and only touched when the method is called. At least in my testing.
 
 ## Defining a class
 

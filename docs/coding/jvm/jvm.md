@@ -93,6 +93,10 @@ Heaps <32GB use compressed oops by default since a version of Java 7.
 Heaps over 32GB revert to using the 64 bit pointers and therefore are most likely
 slower, even if the heap itself is only using (as an example) 500MB extra over 32GB.
 
+## Java 25 and up
+
+- There exists a mode for J25 and up that uses Compressed Object Headers, i.e. Project Lilliput
+
 # Enable remote debugging
 
 ## Java 8 and before

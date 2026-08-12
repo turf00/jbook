@@ -73,7 +73,17 @@ private final Node<K,V>[] initTable() {
     }
 ```
 
-- The most important part here is sc = n- (n >>> 2) so n-n/4 gives us the value when it would be grown.
+- The most important part here is sc = n - (n >>> 2) so n-n/4 gives us the value when it would be grown.
 - In our case at 3071 we hit the limit of sizeCtl and therefore have to grow the buckets.
 - All sizes are powers of two for easy calculations
 - Thereof
+
+## KeySet View
+
+- When it is traversing via an interator and it encounters a ForwardingNode, it will jump to the next table and put the item at the same index.
+- It will return this item and then move back to the initial table.
+
+## Design of Randomised iterator
+
+- State = FROM_RANDOM, FROM_ZERO
+- We advance in the same manner as the current Traverser
