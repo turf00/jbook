@@ -24,6 +24,8 @@ This page contains links for information on the JVM.
 
 [JVM Flags](jvm-flags.md)
 
+[JVM Memory Model](memory-model.md)
+
 [JVM Troubleshooting](jvm-troubleshooting.md)
 
 [Object Layout](object-layout.md)
