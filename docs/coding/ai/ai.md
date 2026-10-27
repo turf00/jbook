@@ -9,3 +9,4 @@ Skills = <https://github.com/mattpocock/skills>
 Superpowers = <https://github.com/obra/superpowers>
 Cavemen = <https://github.com/JuliusBrussee/caveman/tree/main>
 RTK = <https://github.com/rtk-ai/rtk> May no longer be useful
+Claude skills = <https://github.com/multica-ai/andrej-karpathy-skills>
