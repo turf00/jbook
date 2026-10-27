@@ -6,7 +6,7 @@ site_url: https://turf00.github.io/jbook
 nav:
   - Introduction: index.md
   - Coding:
-      - AI: coding/ai.md
+      - AI: coding/ai/ai.md
       - Coding: coding/coding.md
       - Git: coding/git.md
       - JVM:
