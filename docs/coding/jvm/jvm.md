@@ -12,7 +12,11 @@ This page contains links for information on the JVM.
 
 [Async Profiler](async.md)
 
+[Classloading](classloading.md)
+
 [GC](gc.md)
+
+[Generics](generics.md)
 
 [Heap Dump Analysis Tools](heap-dump-analysis/heap-dump-tool-analysis.md)
 
@@ -20,17 +24,29 @@ This page contains links for information on the JVM.
 
 [JIT](jit.md)
 
+[JFR](jfr.md)
+
 [JVM Assembly](jvm-asm.md)
 
 [JVM Flags](jvm-flags.md)
+
+[JVM K8](jmv-k8.md)
 
 [JVM Memory Model](memory-model.md)
 
 [JVM Troubleshooting](jvm-troubleshooting.md)
 
+[Libs](libs.md)
+
+[Metaspace](metaspace.md)
+
 [Object Layout](object-layout.md)
 
+[Questions](questions.md)
 
+[Threads](threads.md)
+
+[Tools](tools.md)
 
 # Java native memory
 
@@ -98,6 +114,30 @@ slower, even if the heap itself is only using (as an example) 500MB extra over 3
 ## Java 25 and up
 
 - There exists a mode for J25 and up that uses Compressed Object Headers, i.e. Project Lilliput
+
+# Safepoints
+
+A JVM safepoint is a point where the JVM knows a Java thread is in a well-defined state, so the JVM can safely inspect or manipulate that thread and its memory.
+
+The important idea is that the JVM cannot necessarily stop a thread at an arbitrary machine instruction. JIT-compiled code may have values in registers, partially updated stack frames, or optimized-away variables. At a safepoint, the JVM has enough metadata to understand the thread's state.
+
+Typical safepoint locations include loop back-edges, method calls/returns, and other places inserted by the JIT where checking for a safepoint is relatively cheap.
+
+The JVM may request a global safepoint. Threads then run until they reach a safepoint, stop there, the JVM performs the operation, and afterward the threads continue.
+
+Common reasons include:
+
+Garbage collection. Especially stop-the-world GC phases. The JVM needs a stable view of object references so it can determine roots and safely move/update objects.
+Deoptimization. If assumptions made by the JIT become invalid, optimized machine code may need to be converted back into less-optimized/interpreted execution state.
+Class redefinition/retransformation. For example, when instrumentation or debugging changes loaded classes.
+Biased-lock revocation in older JVMs. Older HotSpot versions could require safepoints when revoking biased locks. Biased locking is no longer relevant in modern Java versions.
+Thread dumps. Operations such as obtaining stack traces may require threads to reach states where their stacks can be examined reliably.
+JVMTI/debugging operations. Debuggers and profiling/instrumentation agents can require coordinated JVM state.
+Certain JVM housekeeping operations. For example, some code-cache, class-unloading, or runtime data-structure maintenance.
+
+A useful distinction is:
+
+Safepoint ≠ garbage collection.
 
 # Enable remote debugging
 
