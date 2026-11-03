@@ -101,3 +101,7 @@
 ## Capacity PLanning
 
 - <https://systemdr.systemdrd.com/p/capacity-planning-modeling-using>
+
+## CPU instructions
+
+- https://uops.info/html-instr/IDIV_R32.html#ZEN5
