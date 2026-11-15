@@ -61,7 +61,7 @@
 
 - https://gist.github.com/jboner/2841832
 - https://buttondown.com/computer-napkins
-  - https://github.com/sirupsen/napkin-math?tab=readme-ov-file
+- https://github.com/sirupsen/napkin-math?tab=readme-ov-file
 
 ## K8/JVM
 
